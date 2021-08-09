@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductData {
-    String productData = "상품번호,상품명,판매가격,재고수량\n" +
+    String productData = "" +
             "768848,[STANLEY] GO CERAMIVAC 진공 텀블러/보틀 3종,21000,45\n" +
             "748943,디오디너리 데일리 세트 (Daily set),19000,89\n" +
             "779989,버드와이저 HOME DJing 굿즈 세트,35000,43\n" +
@@ -16,7 +16,7 @@ public class ProductData {
             "213341,20SS 오픈 카라/투 버튼 피케 티셔츠 (6color),33250,99\n" +
             "377169,[29Edition.]_[스페셜구성] 뉴코튼베이직 브라렛 세트 (브라1+팬티2),24900,60\n" +
             "744775,SHUT UP [TK00112],28000,35\n" +
-            "779049,\"[리퍼브/키친마켓] Fabrik Pottery Cup, Saucer (단품)\",10000,64\n" +
+            "779049,\"[리퍼브/키친마켓] Fabrik Pottery Cup Saucer (단품)\",10000,64\n" +
             "611019,플루크 new 피그먼트 오버핏 반팔티셔츠 FST701 / 7color M,19800,7\n" +
             "628066,무설탕 프로틴 초콜릿 틴볼스,12900,8\n" +
             "502480,[29Edition.]_[스페셜구성] 렉시 브라렛 세트(브라1+팬티2),24900,41\n" +
@@ -39,10 +39,10 @@ public class ProductData {
 
     private Product createProductUsing(String[] productElements) {
         return new Product(
-                Integer.getInteger(productElements[0]),
+                Integer.parseInt(productElements[0]),
                 productElements[1],
-                Integer.getInteger(productElements[2]),
-                Integer.getInteger(productElements[3])
+                Integer.parseInt(productElements[2]),
+                Integer.parseInt(productElements[3])
         );
     }
 }

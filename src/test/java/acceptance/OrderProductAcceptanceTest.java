@@ -1,11 +1,11 @@
 package acceptance;
 
-import controller.DataController;
 import domain.Product;
 import domain.ProductData;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import ui.CuiPrinter;
 
 import java.util.List;
 
@@ -13,11 +13,12 @@ import java.util.List;
 public class OrderProductAcceptanceTest {
 
     private ProductData productData;
+    private CuiPrinter cuiPrinter;
 
     @BeforeEach
     public void setUp() {
         productData = new ProductData();
-
+        cuiPrinter = new CuiPrinter();
     }
 
     @Test
@@ -30,6 +31,7 @@ public class OrderProductAcceptanceTest {
         // 주문과 종료 중 주문을 한다.
         // then
         // 주문가능 목록을 출력한다.
+        cuiPrinter.listOf(products);
 
         // when
         // 상품번호와 수량을 입력받는다.
