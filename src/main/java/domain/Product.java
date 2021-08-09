@@ -15,6 +15,17 @@ public class Product {
         this.remainedCount = remainedCount;
     }
 
+    public String name() {
+        return name;
+    }
+    public int number() {
+        return number;
+    }
+
+    public int price() {
+        return price;
+    }
+
     @Override
     public String toString() {
         return number + "\t" +
@@ -35,4 +46,5 @@ public class Product {
     public int hashCode() {
         return Objects.hash(number, name, price, remainedCount);
     }
+
 }

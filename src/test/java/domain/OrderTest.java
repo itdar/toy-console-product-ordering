@@ -13,8 +13,8 @@ public class OrderTest {
 
     @Test
     void 정상_주문을_만든다() {
-        Order order = new Order(상품번호, 주문수량);
+        Order order = Order.of(상품번호, 주문수량);
 
-        assertThat(order).isEqualTo(new Order(상품번호, 주문수량));
+        assertThat(order).isEqualTo(Order.of(상품번호, 주문수량));
     }
 }
