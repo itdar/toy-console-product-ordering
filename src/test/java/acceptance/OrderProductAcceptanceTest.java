@@ -19,10 +19,10 @@ public class OrderProductAcceptanceTest {
     private int productNumber1 = 779989;
     private int productNumber2 = 779943;
     private int productNumber3 = 517643;
-    private int quantity1 = 40;
-    private int quantity1_1 = 2;
-    private int quantity2 = 20;
-    private int quantity3 = 7;
+    private int quantity1 = 1;
+    private int quantity1_1 = 0;
+    private int quantity2 = 0;
+    private int quantity3 = 0;
 
     @BeforeEach
     public void setUp() {
