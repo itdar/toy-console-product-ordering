@@ -3,6 +3,7 @@ import domain.common.Process;
 import domain.order.Orders;
 import domain.orderproduct.OrderProducts;
 import domain.product.Products;
+import exception.NegativeOrderQuantityException;
 import exception.SoldOutException;
 import ui.CUIHandler;
 
@@ -35,6 +36,8 @@ public class OrderProductSystem {
                 cuiHandler.printSoldOut();
             } catch (NoSuchElementException e) {
                 cuiHandler.printNoProductNumber();
+            } catch (NegativeOrderQuantityException e) {
+                cuiHandler.printNoNegativeOrderQuantity();
             }
         }
 

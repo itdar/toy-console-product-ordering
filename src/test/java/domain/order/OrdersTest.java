@@ -1,10 +1,13 @@
 package domain.order;
 
 import domain.ProductData;
+import exception.NegativeOrderQuantityException;
 import exception.SoldOutException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import javax.activation.UnsupportedDataTypeException;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -35,7 +38,7 @@ public class OrdersTest {
 
     @DisplayName("주문들이 전부 가능한 수량을 가지고 있다.")
     @Test
-    void 주문들이_전부_가능한_수량을_가졌는지_검증1() throws SoldOutException {
+    void 주문들이_전부_가능한_수량을_가졌는지_검증1() throws SoldOutException, NegativeOrderQuantityException {
         normalOrders.validate();
     }
 

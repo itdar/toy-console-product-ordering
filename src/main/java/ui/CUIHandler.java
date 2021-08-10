@@ -92,7 +92,7 @@ public class CUIHandler {
     }
 
     public void printInvalidInput() {
-        System.out.println("유효하지 않은 입력");
+        System.out.println("유효하지 않은 입력입니다. 다시 입력하세요.");
     }
 
     public void printBye() {
@@ -100,10 +100,14 @@ public class CUIHandler {
     }
 
     public void printSoldOut() {
-        System.out.println("주문수량보다 재고가 적은 상품이 있습니다.");
+        System.out.println("주문수량보다 재고가 적은 상품이 있습니다. 다시 주문하세요.");
     }
 
     public void printNoProductNumber() {
-        System.out.println("주문번호가 없는 상품이 있습니다.");
+        System.out.println("주문번호가 없는 상품이 있습니다. 다시 주문하세요.");
+    }
+
+    public void printNoNegativeOrderQuantity() {
+        System.out.println("최종 주문 수량이 음수인 주문이 있습니다. 다시 주문하세요.");
     }
 }

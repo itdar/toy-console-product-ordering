@@ -6,6 +6,7 @@ import domain.order.Order;
 import domain.order.Orders;
 import domain.orderproduct.OrderProducts;
 import domain.product.Products;
+import exception.NegativeOrderQuantityException;
 import exception.SoldOutException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -46,7 +47,7 @@ public class OrderProductAcceptanceTest {
     }
 
     @Test
-    void 저장되어있는_상품을_상품번호와_수량을_입력해서_구매하는_해피케이스() throws IOException, SoldOutException {
+    void 저장되어있는_상품을_상품번호와_수량을_입력해서_구매하는_해피케이스() throws IOException, SoldOutException, NegativeOrderQuantityException {
         // given
         // 상품데이터가 저장되어 있다.
         Products products = productData.loadAll();
@@ -85,7 +86,7 @@ public class OrderProductAcceptanceTest {
 
     @DisplayName("주문번호 실수, 재고수량 초과 주문 후에 정상 입력 한다.")
     @Test
-    void 저장되어있는_상품을_상품번호와_수량을_입력해서_구매하는_예외포함_케이스() throws IOException, SoldOutException {
+    void 저장되어있는_상품을_상품번호와_수량을_입력해서_구매하는_예외포함_케이스() throws IOException, SoldOutException, NegativeOrderQuantityException {
         // given
         // 상품데이터가 저장되어 있다.
         Products products = productData.loadAll();
