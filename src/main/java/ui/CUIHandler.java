@@ -1,8 +1,8 @@
 package ui;
 
-import common.Process;
-import domain.OrderProducts;
-import domain.Products;
+import domain.common.Process;
+import domain.orderproduct.OrderProducts;
+import domain.product.Products;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,10 +15,11 @@ public class CUIHandler {
     private final int MINIMUM_FREE_ORDER_PRICE = 50000;
     private final int PRICE_OF_DELIVERY = 2500;
 
+    private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
     public Process selectOrderOrQuit() throws IOException {
         System.out.print("입력(o[order]: 주문, q[quit]: 종료) : ");
 
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String readString = reader.readLine();
 
         if (readString.equals("o") || readString.equals("order")) {
@@ -36,6 +37,22 @@ public class CUIHandler {
                 .forEach(System.out::println);
     }
 
+    public int selectProductNumber() throws IOException {
+        System.out.print("상품번호: ");
+
+        String line = reader.readLine();
+        if (line.contains(" ")) {
+            throw new IOException("상품 선택 종료");
+        }
+        return Integer.parseInt(line);
+    }
+
+    public int selectQuantity() throws IOException {
+        System.out.print("수량: ");
+
+        return Integer.parseInt(reader.readLine());
+    }
+
     public void show(OrderProducts orderProducts) {
         printSeparator();
         printListOf(orderProducts);
@@ -43,6 +60,7 @@ public class CUIHandler {
         printTotalPriceOf(orderProducts);
         printSeparator();
         printFinalPayPrice(orderProducts);
+        printSeparator();
     }
 
     private void printSeparator() {
@@ -82,4 +100,11 @@ public class CUIHandler {
         System.out.println("고객님의 주문 감사합니다.");
     }
 
+    public void printSoldOut() {
+        System.out.println("주문수량보다 재고가 적은 상품이 있습니다.");
+    }
+
+    public void printNoProductNumber() {
+        System.out.println("주문번호가 없는 상품이 있습니다.");
+    }
 }

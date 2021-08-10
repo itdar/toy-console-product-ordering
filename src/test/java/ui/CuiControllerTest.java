@@ -1,6 +1,7 @@
 package ui;
 
-import common.Process;
+import domain.common.Process;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
