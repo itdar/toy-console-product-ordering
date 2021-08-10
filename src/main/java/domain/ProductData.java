@@ -36,8 +36,8 @@ public enum ProductData {
         String[] splitNewlineStrings = productData.split("\n");
 
         List<Product> products = new ArrayList<>();
-        for (int i = 0; i < splitNewlineStrings.length; ++i) {
-            String[] productElements = splitNewlineStrings[i].split(",");
+        for (String splitNewlineString : splitNewlineStrings) {
+            String[] productElements = splitNewlineString.split(",");
             products.add(createProductUsing(productElements));
         }
 

@@ -22,8 +22,8 @@ public class Product {
         return new Product(number, name, price, remainedCount);
     }
 
-    public boolean checkHasEnoughRemainedCountTo(Order order) throws SoldOutException {
-        if (remainedCount >= order.quantity()) {
+    public boolean validateRemainedCount(int orderQuantity) throws SoldOutException {
+        if (remainedCount >= orderQuantity) {
             return true;
         }
         throw new SoldOutException();
