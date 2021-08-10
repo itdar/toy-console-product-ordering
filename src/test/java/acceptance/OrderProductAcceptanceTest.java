@@ -1,6 +1,10 @@
 package acceptance;
 
 import domain.*;
+import domain.order.Order;
+import domain.order.Orders;
+import domain.orderproduct.OrderProducts;
+import domain.product.Products;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -26,7 +30,7 @@ public class OrderProductAcceptanceTest {
 
     @BeforeEach
     public void setUp() {
-        productData = new ProductData();
+        productData = ProductData.INSTANCE;
         cuiPrinter = new CUIHandler();
     }
 
