@@ -19,7 +19,7 @@ public class OrderProductSystem {
 
         while (true) {
             try {
-                if (Process.QUIT.equals(cuiHandler.selectOrderOrQuit())) {
+                if (cuiHandler.selectOrderOrQuit() == Process.QUIT) {
                     break;
                 }
 
