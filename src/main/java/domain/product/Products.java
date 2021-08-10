@@ -1,25 +1,27 @@
 package domain.product;
 
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Stream;
 
 public class Products {
-    List<Product> products;
+    private Map<Integer, Product> productMap;
 
     public Products(List<Product> products) {
-        this.products = products;
+        productMap = new HashMap<>();
+        for (Product product : products) {
+            productMap.put(product.number(), product);
+        }
+        productMap = Collections.unmodifiableMap(productMap);
     }
 
     public Stream<Product> stream() {
-        return this.products.stream();
+        return productMap.values().stream();
     }
 
     public Product findByNumber(int productNumber) {
-        return products.stream()
-                .filter(product -> Objects.equals(product.number(), productNumber))
-                .findAny()
-                .orElseThrow(NoSuchElementException::new);
+        if (!productMap.containsKey(productNumber)) {
+            throw new NoSuchElementException("등록되지 않은 상품 번호");
+        }
+        return productMap.get(productNumber);
     }
 }
