@@ -1,4 +1,4 @@
-package domain;
+package domain.order;
 
 import domain.order.Order;
 import org.junit.jupiter.api.DisplayName;

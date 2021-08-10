@@ -1,4 +1,4 @@
-package domain;
+package domain.orderproduct;
 
 import domain.order.Order;
 import domain.orderproduct.OrderProduct;

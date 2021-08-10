@@ -1,5 +1,6 @@
-package domain;
+package domain.order;
 
+import domain.ProductData;
 import domain.order.Order;
 import domain.order.Orders;
 import exception.SoldOutException;
