@@ -14,6 +14,8 @@ import ui.CUIHandler;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.NoSuchElementException;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -58,15 +60,12 @@ public class OrderProductAcceptanceTest {
         cuiPrinter.show(products);
 
         // when
-        // 상품번호와 수량을 여러개 입력받는다.
-        Orders orders = new Orders(Arrays.asList(
-                Order.of(productNumber1, quantity1),
-                Order.of(productNumber1, quantity1_1),
-                Order.of(productNumber2, quantity2),
-                Order.of(productNumber3, quantity3)
-        ));
-
-        // when
+        // 상품번호와 수량을 여러개 입력받아 검증한다.
+        Orders orders = new Orders();
+        orders.addOrder(productNumber1, quantity1);
+        orders.addOrder(productNumber1, quantity1_1);
+        orders.addOrder(productNumber2, quantity2);
+        orders.addOrder(productNumber3, quantity3);
         orders.validate();
         // then 주문 유효성 검증 완료
 
@@ -101,10 +100,10 @@ public class OrderProductAcceptanceTest {
 
         // when
         // 상품번호와 수량을 여러개 입력받는다. 주문번호 실수 포함한다.
-        Orders orders = new Orders(Arrays.asList(
-                Order.of(abnormalProductNumber, quantity1),
-                Order.of(productNumber3, quantity3)
-        ));
+        Orders orders = new Orders();
+        orders.addOrder(abnormalProductNumber, quantity1);
+        orders.addOrder(productNumber3, quantity3);
+
         // then exception
         Orders finalOrders1 = orders;
         assertThatThrownBy(() -> {
@@ -113,10 +112,9 @@ public class OrderProductAcceptanceTest {
 
         // when
         // 상품번호와 수량을 여러개 입력받는다. 주문 수량 실수 포함한다.
-        orders = new Orders(Arrays.asList(
-                Order.of(productNumber1, quantity1),
-                Order.of(productNumber3, abnormalQuantity)
-        ));
+        orders = new Orders();
+        orders.addOrder(productNumber1, quantity1);
+        orders.addOrder(productNumber3, abnormalQuantity);
         // then exception
         Orders finalOrders = orders;
         assertThatThrownBy(() -> {
@@ -124,10 +122,9 @@ public class OrderProductAcceptanceTest {
         }).isInstanceOf(SoldOutException.class);
 
         // when 정상 주문들
-        orders = new Orders(Arrays.asList(
-                Order.of(productNumber1, quantity1),
-                Order.of(productNumber2, quantity2)
-        ));
+        orders = new Orders();
+        orders.addOrder(productNumber1, quantity1);
+        orders.addOrder(productNumber3, quantity3);
         orders.validate();
         // then
         // 주문내역, 주문금액, 지불금액이 출력된다.

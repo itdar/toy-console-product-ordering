@@ -7,8 +7,6 @@ import exception.SoldOutException;
 import ui.CUIHandler;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.NoSuchElementException;
 
 public class OrderProductSystem {
@@ -25,7 +23,7 @@ public class OrderProductSystem {
                 Products products = ProductData.INSTANCE.loadAll();
                 cuiHandler.show(products);
 
-                Orders orders = inputOrders(cuiHandler);
+                Orders orders = readOrders(cuiHandler);
                 orders.validate();
 
                 OrderProducts orderProducts = new OrderProducts(products, orders);
@@ -43,18 +41,14 @@ public class OrderProductSystem {
         cuiHandler.printBye();
     }
 
-    private Orders inputOrders(CUIHandler cuiHandler) {
-        Map<Integer, Integer> orderMap = new HashMap<>();
+    private Orders readOrders(CUIHandler cuiHandler) {
+        Orders orders = new Orders();
 
         boolean isContinue = true;
-        int productNumber;
-        int quantity;
         while (isContinue) {
             try {
-                productNumber = cuiHandler.selectProductNumber();
-                quantity = cuiHandler.selectQuantity();
-
-                addOrder(orderMap, productNumber, quantity);
+                orders.addOrder(cuiHandler.selectProductNumber(),
+                        cuiHandler.selectQuantity());
             } catch (IOException e) {
                 isContinue = false;
             } catch (Exception e) {
@@ -62,15 +56,7 @@ public class OrderProductSystem {
             }
         }
 
-        return new Orders(orderMap);
-    }
-
-    private void addOrder(Map<Integer, Integer> orders, int productNumber, int quantity) {
-        if (orders.containsKey(productNumber)) {
-            orders.put(productNumber, orders.get(productNumber) + quantity);
-            return;
-        }
-        orders.put(productNumber, quantity);
+        return orders;
     }
 
 }

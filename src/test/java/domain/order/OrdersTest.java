@@ -1,14 +1,10 @@
 package domain.order;
 
 import domain.ProductData;
-import domain.order.Order;
-import domain.order.Orders;
 import exception.SoldOutException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -28,15 +24,13 @@ public class OrdersTest {
     public void setUp() {
         ProductData.INSTANCE.loadAll();
 
-        normalOrders = new Orders(Arrays.asList(
-                Order.of(productNumber1, normalQuantity1),
-                Order.of(productNumber2, normalQuantity2)
-        ));
+        normalOrders = new Orders();
+        normalOrders.addOrder(productNumber1, normalQuantity1);
+        normalOrders.addOrder(productNumber2, normalQuantity2);
 
-        abnormalOrders = new Orders(Arrays.asList(
-                Order.of(productNumber1, abnormalQuantity1),
-                Order.of(productNumber2, abnormalQuantity2)
-        ));
+        abnormalOrders = new Orders();
+        abnormalOrders.addOrder(productNumber1, abnormalQuantity1);
+        abnormalOrders.addOrder(productNumber2, abnormalQuantity2);
     }
 
     @DisplayName("주문들이 전부 가능한 수량을 가지고 있다.")
