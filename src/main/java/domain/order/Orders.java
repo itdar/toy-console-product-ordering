@@ -15,36 +15,14 @@ public class Orders {
         this.orders = orders;
     }
 
-    public List<Order> get() {
-        return orders;
-    }
-
-    public Stream<Order> stream() {
-        return this.orders.stream();
-    }
-
-    /**
-     * 중복상품 주문시, 주문을 합친다.
-     */
-    public void assembleSameOrders() {
-        Map<Integer, Integer> orderMap = new LinkedHashMap<>();
-
-        Order order;
-        for (int i = 0; i < orders.size(); ++i) {
-            order = orders.get(i);
-            if (orderMap.containsKey(order.productNumber())) {
-                orderMap.put(order.productNumber(), orderMap.get(order.productNumber()) + order.quantity());
-                continue;
-            }
-            orderMap.put(order.productNumber(), order.quantity());
-        }
-
-        orders = new ArrayList<>();
-
-        for (int productNumber : orderMap.keySet()) {
+    public Orders(Map<Integer, Integer> orderMap) {
+        for (Integer productNumber : orderMap.keySet()) {
             orders.add(Order.of(productNumber, orderMap.get(productNumber)));
         }
+    }
 
+    public List<Order> get() {
+        return orders;
     }
 
     public void validate() throws SoldOutException {

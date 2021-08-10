@@ -1,6 +1,5 @@
+import domain.ProductData;
 import domain.common.Process;
-import domain.*;
-import domain.order.Order;
 import domain.order.Orders;
 import domain.orderproduct.OrderProducts;
 import domain.product.Products;
@@ -8,8 +7,8 @@ import exception.SoldOutException;
 import ui.CUIHandler;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.NoSuchElementException;
 
 public class OrderProductSystem {
@@ -17,16 +16,16 @@ public class OrderProductSystem {
     public void start() {
         CUIHandler cuiHandler = new CUIHandler();
 
-        Process process = Process.START;
-        while (process.isContinue()) {
+        while (true) {
             try {
-                process = cuiHandler.selectOrderOrQuit();
+                if (Process.QUIT.equals(cuiHandler.selectOrderOrQuit())) {
+                    break;
+                }
 
                 Products products = ProductData.INSTANCE.loadAll();
                 cuiHandler.show(products);
 
                 Orders orders = inputOrders(cuiHandler);
-                orders.assembleSameOrders();
                 orders.validate();
 
                 OrderProducts orderProducts = new OrderProducts(products, orders);
@@ -45,7 +44,7 @@ public class OrderProductSystem {
     }
 
     private Orders inputOrders(CUIHandler cuiHandler) {
-        List<Order> orders = new ArrayList<>();
+        Map<Integer, Integer> orderMap = new HashMap<>();
 
         boolean isContinue = true;
         int productNumber;
@@ -55,14 +54,23 @@ public class OrderProductSystem {
                 productNumber = cuiHandler.selectProductNumber();
                 quantity = cuiHandler.selectQuantity();
 
-                orders.add(Order.of(productNumber, quantity));
+                addOrder(orderMap, productNumber, quantity);
             } catch (IOException e) {
                 isContinue = false;
+            } catch (Exception e) {
+                cuiHandler.printInvalidInput();
             }
         }
 
-        return new Orders(orders);
+        return new Orders(orderMap);
     }
 
-//    private
+    private void addOrder(Map<Integer, Integer> orders, int productNumber, int quantity) {
+        if (orders.containsKey(productNumber)) {
+            orders.put(productNumber, orders.get(productNumber) + quantity);
+            return;
+        }
+        orders.put(productNumber, quantity);
+    }
+
 }

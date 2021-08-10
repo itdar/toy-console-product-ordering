@@ -65,9 +65,7 @@ public class OrderProductAcceptanceTest {
                 Order.of(productNumber2, quantity2),
                 Order.of(productNumber3, quantity3)
         ));
-        orders.assembleSameOrders();
-        // 스페이스바+엔터키로 종료를 선언한다.
-        
+
         // when
         orders.validate();
         // then 주문 유효성 검증 완료
@@ -107,7 +105,6 @@ public class OrderProductAcceptanceTest {
                 Order.of(abnormalProductNumber, quantity1),
                 Order.of(productNumber3, quantity3)
         ));
-        orders.assembleSameOrders();
         // then exception
         Orders finalOrders1 = orders;
         assertThatThrownBy(() -> {
@@ -120,7 +117,6 @@ public class OrderProductAcceptanceTest {
                 Order.of(productNumber1, quantity1),
                 Order.of(productNumber3, abnormalQuantity)
         ));
-        orders.assembleSameOrders();
         // then exception
         Orders finalOrders = orders;
         assertThatThrownBy(() -> {
@@ -132,7 +128,6 @@ public class OrderProductAcceptanceTest {
                 Order.of(productNumber1, quantity1),
                 Order.of(productNumber2, quantity2)
         ));
-        orders.assembleSameOrders();
         orders.validate();
         // then
         // 주문내역, 주문금액, 지불금액이 출력된다.

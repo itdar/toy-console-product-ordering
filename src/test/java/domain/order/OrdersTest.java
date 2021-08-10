@@ -32,13 +32,11 @@ public class OrdersTest {
                 Order.of(productNumber1, normalQuantity1),
                 Order.of(productNumber2, normalQuantity2)
         ));
-        normalOrders.assembleSameOrders();
 
         abnormalOrders = new Orders(Arrays.asList(
                 Order.of(productNumber1, abnormalQuantity1),
                 Order.of(productNumber2, abnormalQuantity2)
         ));
-        abnormalOrders.assembleSameOrders();
     }
 
     @DisplayName("주문들이 전부 가능한 수량을 가지고 있다.")
