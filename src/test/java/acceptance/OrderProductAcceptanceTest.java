@@ -4,7 +4,7 @@ import domain.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import ui.CuiPrinter;
+import ui.CUIHandler;
 
 import java.util.Arrays;
 
@@ -14,7 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class OrderProductAcceptanceTest {
 
     private ProductData productData;
-    private CuiPrinter cuiPrinter;
+    private CUIHandler cuiPrinter;
 
     private int productNumber1 = 779989;
     private int productNumber2 = 779943;
@@ -27,7 +27,7 @@ public class OrderProductAcceptanceTest {
     @BeforeEach
     public void setUp() {
         productData = new ProductData();
-        cuiPrinter = new CuiPrinter();
+        cuiPrinter = new CUIHandler();
     }
 
     @Test
