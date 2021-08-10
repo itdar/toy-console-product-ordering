@@ -10,14 +10,12 @@ import java.util.*;
 public class Orders {
     Map<Integer, Integer> orderMap = new HashMap<>();
 
-    public List<Order> get() {
-        List<Order> orders = new ArrayList<>();
+    public Set<Integer> getProductNumbers() {
+        return orderMap.keySet();
+    }
 
-        for (Integer productNumber : orderMap.keySet()) {
-            orders.add(Order.of(productNumber, orderMap.get(productNumber)));
-        }
-
-        return orders;
+    public Order find(Integer productNumber) {
+        return Order.of(productNumber, orderMap.get(productNumber));
     }
 
     public void validate() throws SoldOutException {

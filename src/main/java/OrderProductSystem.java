@@ -47,8 +47,10 @@ public class OrderProductSystem {
         boolean isContinue = true;
         while (isContinue) {
             try {
-                orders.addOrder(cuiHandler.selectProductNumber(),
-                        cuiHandler.selectQuantity());
+                orders.addOrder(
+                        cuiHandler.selectProductNumber(),
+                        cuiHandler.selectQuantity()
+                );
             } catch (IOException e) {
                 isContinue = false;
             } catch (Exception e) {

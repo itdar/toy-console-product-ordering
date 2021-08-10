@@ -10,11 +10,10 @@ import java.io.InputStreamReader;
 import java.text.NumberFormat;
 import java.util.Locale;
 
+import static domain.common.MoneyStandard.MINIMUM_FREE_ORDER_PRICE;
+import static domain.common.MoneyStandard.PRICE_OF_DELIVERY;
+
 public class CUIHandler {
-
-    private final int MINIMUM_FREE_ORDER_PRICE = 50000;
-    private final int PRICE_OF_DELIVERY = 2500;
-
     private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
     public Process selectOrderOrQuit() throws IOException {

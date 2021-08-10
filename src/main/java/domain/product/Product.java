@@ -1,6 +1,5 @@
 package domain.product;
 
-import domain.order.Order;
 import exception.SoldOutException;
 
 import java.util.Objects;
