@@ -5,13 +5,13 @@ import exception.SoldOutException;
 import java.util.Objects;
 
 public class Product {
-    private int number;
+    private ProductNumber number;
     private String name;
     private int price;
     private int remainedCount;
 
     private Product(int number, String name, int price, int remainedCount) {
-        this.number = number;
+        this.number = ProductNumber.of(number);
         this.name = name;
         this.price = price;
         this.remainedCount = remainedCount;
@@ -33,7 +33,7 @@ public class Product {
     }
 
     public int number() {
-        return number;
+        return number.get();
     }
 
     public int price() {
@@ -53,7 +53,7 @@ public class Product {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
-        return number == product.number && price == product.price && remainedCount == product.remainedCount && Objects.equals(name, product.name);
+        return price == product.price && remainedCount == product.remainedCount && Objects.equals(number, product.number) && Objects.equals(name, product.name);
     }
 
     @Override
