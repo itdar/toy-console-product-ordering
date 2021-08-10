@@ -1,4 +1,4 @@
-package common;
+package domain.common;
 
 public enum Process {
     QUIT, ORDER, START;

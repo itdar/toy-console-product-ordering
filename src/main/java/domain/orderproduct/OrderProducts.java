@@ -1,4 +1,9 @@
-package domain;
+package domain.orderproduct;
+
+import domain.order.Order;
+import domain.order.Orders;
+import domain.product.Product;
+import domain.product.Products;
 
 import java.util.ArrayList;
 import java.util.List;

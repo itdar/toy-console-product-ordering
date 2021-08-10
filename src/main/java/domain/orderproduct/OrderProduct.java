@@ -1,4 +1,7 @@
-package domain;
+package domain.orderproduct;
+
+import domain.order.Order;
+import domain.product.Product;
 
 public class OrderProduct {
     private String name;

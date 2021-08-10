@@ -1,4 +1,4 @@
-package domain;
+package domain.order;
 
 import java.util.Objects;
 

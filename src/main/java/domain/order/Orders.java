@@ -1,4 +1,9 @@
-package domain;
+package domain.order;
+
+import domain.ProductData;
+import domain.product.Product;
+import domain.product.Products;
+import exception.SoldOutException;
 
 import java.util.*;
 import java.util.stream.Stream;
@@ -36,11 +41,18 @@ public class Orders {
 
         orders = new ArrayList<>();
 
-        Iterator<Integer> iterator = orderMap.keySet().iterator();
-        while (iterator.hasNext()) {
-            int productNumber = iterator.next().intValue();
+        for (int productNumber : orderMap.keySet()) {
             orders.add(Order.of(productNumber, orderMap.get(productNumber)));
         }
 
     }
+
+    public void validate() throws SoldOutException {
+        Products products = ProductData.INSTANCE.getProducts();
+        for (Order order : orders) {
+            Product product = products.findByNumber(order.productNumber());
+            product.checkHasEnoughRemainedCountTo(order);
+        }
+    }
+
 }
